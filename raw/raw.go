@@ -1,16 +1,20 @@
 package raw
 
-import "github.com/veandco/go-sdl2/sdl"
+import (
+	"image/color"
+
+	"github.com/veandco/go-sdl2/sdl"
+)
 
 type Display struct {
-	window *DSL
+	window *sdl.Window
 }
 
 func OpenDisplay(width uint32, height uint32) (*Display, error) {
 	display := Display{}
 
 	sdl.Init(sdl.INIT_EVERYTHING)
-	window, err := sdl.CreateWindow("test", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, width, height, sdl.WINDOW_SHOWN)
+	window, err := sdl.CreateWindow("test", sdl.WINDOWPOS_UNDEFINED, sdl.WINDOWPOS_UNDEFINED, int(width), int(height), sdl.WINDOW_SHOWN)
 	if err != nil {
 		return nil, err
 	}
@@ -23,15 +27,13 @@ func (d *Display) Close() {
 	if d.window != nil {
 		d.window.Destroy()
 	}
-	sql.Quit()
+	sdl.Quit()
 }
 
-func (d *Display) FillRect(uint32 x, uint32 y, uint32 width, uint32 height, color color.Color) {
+func (d *Display) FillRect(x uint32, y uint32, width uint32, height uint32, color color.Color) {
 
 }
 
 func (d *Display) Flip() {
 
 }
-
-func (d *Display)Sl
